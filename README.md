@@ -23,3 +23,11 @@ LocationAPI: GET /api/location?city={stadsnamn}. Svarar med stadens longitude oc
 CatImageAPI: GET /api/cats/random. Svarar med en URL till en slumpmässig bild på en katt. Se till att ha lite katbilder, använda static files i WebAPI-projektet.
 
 WeatherFactsAPI: GET /api/facts/random. Svarar med ett slumpmässigt väderrelaterat citat eller "Visste du att..."-fakta. Gör en egen liten databas med några fakta/citat.
+
+SpaceAPI: GET /api/space/satellite/{city}. Svarar med bilder på tre förvalda städer (Borås, Göteborg, Stockholm).
+GET /api/space/satellite/all. Visar de tre städer.
+GET /api/space/location/{planet}. Returnerar fun fact om angiven planet.
+GET /api/space/solarsystem/{planet}. Returnerar information om angiven planet. 
+
+
+
