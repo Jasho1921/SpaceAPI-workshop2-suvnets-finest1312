@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 [ApiController]
 [Route("/api/space")]
@@ -28,6 +30,22 @@ public class SpaceController : ControllerBase
     public IActionResult GetAllSatelliteImages()
     {
         return Ok(_context.SatelliteImages.ToList());
+    }
+
+    [HttpGet("{body}")]
+    public async Task<IActionResult> GetBody(string body)
+    {
+        var normalized = body.ToLowerInvariant().Trim();
+
+        var result = await _context.CelestialBodies
+            .FirstOrDefaultAsync(b => b.ApiId == normalized || b.EnglishName.ToLower() == normalized);
+
+        if (result == null)
+        {
+            return NotFound(new { error = $"Hittade inte '{body}'. Prova: earth, moon, jupiter, saturn, pluto, mars..." });
+        }
+
+        return Ok(result);
     }
 
 
