@@ -32,7 +32,7 @@ public class SpaceController : ControllerBase
         return Ok(_context.SatelliteImages.ToList());
     }
 
-    [HttpGet("{body}")]
+    [HttpGet("solarsystem/{planet}")]
     public async Task<IActionResult> GetBody(string body)
     {
         var normalized = body.ToLowerInvariant().Trim();
@@ -53,12 +53,6 @@ public class SpaceController : ControllerBase
     public IActionResult GetWeatherFromSpace()
     {
         return Ok("Fint väder i rymden");
-    }
-
-    [HttpGet("location")]
-    public IActionResult GetLocation()
-    {
-        return Ok("info om borås? Eller bara att vi valt borås?");
     }
 
     [HttpGet("funfact/{planet}")]
