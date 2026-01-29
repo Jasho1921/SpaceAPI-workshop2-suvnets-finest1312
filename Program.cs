@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Lägg till den DbContext ni skapar för er databas här
-// builder.Services.AddDbContext<ApiDbContext>(options =>
-//    options.UseInMemoryDatabase("EventDb"));
+builder.Services.AddDbContext<SpaceDbContext>(options =>
+            options.UseInMemoryDatabase("SpaceDb"));
+
+
+builder.Services.AddControllers();
 
 //Låt detta vara kvar! Utan denna inställning kommer inte websidan att få access till API:et.
 // Läs mer här: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
@@ -18,6 +21,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+
 var app = builder.Build();
 
 // Denna hör ihop med CORS-inställningen ovan
@@ -27,3 +31,20 @@ app.UseCors();
 app.MapControllers();
 
 app.Run();
+
+public class SpaceDbContext : DbContext
+{
+    public SpaceDbContext(DbContextOptions options) : base(options) { }
+
+    public DbSet<Space> Spaces { get; set; }
+}
+
+
+public class Space
+{
+    public int ID { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Category { get; set; } = string.Empty;
+    public string Fact { get; set; } = string.Empty;
+
+}
