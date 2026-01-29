@@ -36,9 +36,9 @@ using (var scope = app.Services.CreateScope())
     if (!context.SatelliteImages.Any())
     {
         context.SatelliteImages.AddRange(
-            new SatelliteImage { City = "Borås", ImageUrl = "/images/boras.jpg" },
-            new SatelliteImage { City = "Stockholm", ImageUrl = "/images/stockholm.jpg" },
-            new SatelliteImage { City = "Göteborg", ImageUrl = "/images/goteborg.jpg" }
+            new SatelliteImage { City = "Borås", ImageUrl = "/boras.jpg" },
+            new SatelliteImage { City = "Stockholm", ImageUrl = "/stockholm.jpg" },
+            new SatelliteImage { City = "Göteborg", ImageUrl = " /goteborg.jpg" }
         );
         context.SaveChanges();
     }
