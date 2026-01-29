@@ -1,31 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("/api/space")]
-public class SpaceController : ControllerBase
+[Route("api/satellite")]
+public class SpaceImageController : ControllerBase
 {
-    [ApiController]
-    [Route("/api/satellite")]
-    public class SpaceImageController : ControllerBase
+    private readonly SpaceDbContext _context;
+
+    public SpaceImageController(SpaceDbContext context)
     {
-        private readonly SpaceDbContext _context;
+        _context = context;
 
-        public SpaceImageController(SpaceDbContext context)
+        // Seed data – bara första gången
+        if (!_context.SatelliteImages.Any())
         {
-            _context = context;
-        }
-
-        [HttpGet("satellite/{city}")]
-        public IActionResult GetSatelliteImage(string city)
-        {
-            var image = _context.SatelliteImages
-                .FirstOrDefault(x => x.City.ToLower() == city.ToLower());
-
-            if (image == null) return NotFound();
-
-            return Ok(image);
+            _context.SatelliteImages.AddRange(
+                new SatelliteImage { City = "Borås", ImageUrl = "/images/boras.jpg" },
+                new SatelliteImage { City = "Stockholm", ImageUrl = "/images/stockholm.jpg" },
+                new SatelliteImage { City = "Göteborg", ImageUrl = "/images/goteborg.jpg" }
+            );
+            _context.SaveChanges();
         }
     }
+
+    // GET /api/satellite/boras
+    [HttpGet("{city}")]
+    public IActionResult GetSatelliteImage(string city)
+    {
+        var image = _context.SatelliteImages
+            .FirstOrDefault(x => x.City.ToLower() == city.ToLower());
+
+        if (image == null) return NotFound(new { message = "City not found" });
+
+        return Ok(image);
+    }
+
+    // GET /api/satellite/all
+    [HttpGet("all")]
+    public IActionResult GetAllSatelliteImages()
+    {
+        return Ok(_context.SatelliteImages.ToList());
+    }
+
 
     [HttpGet("weather")]
     public IActionResult GetWeatherFromSpace()
@@ -52,6 +67,8 @@ public class SpaceController : ControllerBase
     // }
     
 }
+
+
 
 
 // /api/space/weather
