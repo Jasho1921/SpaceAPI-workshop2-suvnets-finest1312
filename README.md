@@ -61,7 +61,7 @@
 ```  
 
 ### `/weather/{city}`  
-- `"Ingen prognos för {city} idag... Men rymden ser fin ut härifrån iallafall!"`  
+- `Returnerar bara en sträng: "Ingen prognos för {city} idag... Men rymden ser fin ut härifrån iallafall!" Hade man returnerat ett JSON-objekt istället för en sträng hade det sett ut som nedan.`  
   
 ```json  
 {  
