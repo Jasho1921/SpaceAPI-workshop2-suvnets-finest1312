@@ -14,7 +14,7 @@ public class SpaceController : ControllerBase
     }
 
     // GET /api/satellite/boras
-    [HttpGet("satellite/{city}")]
+    [HttpGet("satellite/{city}.jpg")]
     public IActionResult GetSatelliteImage(string city)
     {
         var image = _context.SatelliteImages
@@ -61,24 +61,20 @@ public class SpaceController : ControllerBase
         return Ok("info om borås? Eller bara att vi valt borås?");
     }
 
-    [HttpGet("facts")]
-    public IActionResult GetLocationFunFact()
+    [HttpGet("funfact/{planet}")]
+    public IActionResult GetLocationFunFact(string planet)
     {
-        return Ok("5G strålningen är kraftig idag! Glöm ej foliehatten och paraply!");
+        var factsForPlanet = _context.FunFacts
+            .Where(f => f.Planet.ToLower() == planet.ToLower())
+            .ToList();
+
+        if (!factsForPlanet.Any())
+            return NotFound("Ingen fun fact hittades för planeten");
+
+        var randomFact = factsForPlanet[
+            new Random().Next(factsForPlanet.Count)
+        ];
+
+        return Ok(randomFact);
     }
-
-    // [HttpGet("norrsken")]
-    // public async Task<IActionResult> GetListOfAurora()
-    // {
-    //    // var cities = await _db.Cities.Select(c => där det finns norrsken just nu ).Where
-    // }
-    
 }
-
-
-
-
-// /api/space/weather
-// /api/space/location
-// /api/space/facts
-// /api/space/norrsken
