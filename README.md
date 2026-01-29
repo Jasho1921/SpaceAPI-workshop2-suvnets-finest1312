@@ -16,6 +16,7 @@
 /satellite/{city} OBS ENDAST METADATA, GÅR EJ RETURNERA JPG I JSON FORMAT
 
 {
+
   "city": "Stockholm",
 
   "imageType": "satellite",
@@ -25,37 +26,46 @@
   "resolution": "1920x1080",
 
   "takenFrom": "Low Earth Orbit"
+
 }
 
-/satellite/all
 
+/satellite/all
 {
+
    "satellites": [
 
    {
+
       "city": "Borås",
 
       "imageUrl": "/api/space/satellite/Boras.jpg
 
    },
+
    {
+
      "city": "Göteborg",
 
      "imageUrl": "/api/space/satellite/Goteborg.jpg"
 
    },
    {
+
      "city": "Stockholm",
 
      "imageUrl": "api/space/satellite/Stockholm.jpg"
 
    }
+
  ]
+
 }
 
 /funfact/{planet}
 
 {
+
   "planet": "Mars",
 
   "funFact": "Mars har det största berget i hela solsystemet, Olympus Mons."
@@ -65,6 +75,7 @@
 /solarsystem/{planet}
 
 {
+
   "planet": "Jupiter",
 
   "type": "Gasjätte",
@@ -82,5 +93,7 @@
 /weather
 
 {
+
   "weather": "Fint väder i rymden!"
+  
 }
