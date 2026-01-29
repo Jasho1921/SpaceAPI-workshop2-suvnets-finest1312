@@ -7,8 +7,11 @@ public class SpaceDbContext : DbContext
 
     public DbSet<Space> Spaces { get; set; }
     public DbSet<SatelliteImage> SatelliteImages { get; set; }
-    public DbSet<CelestialBody> CelestialBodys { get; set; }
+    public DbSet<CelestialBody> CelestialBodies { get; set; }
+
+
 }
+
 
 public class Space
 {

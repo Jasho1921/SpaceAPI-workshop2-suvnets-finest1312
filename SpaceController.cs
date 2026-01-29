@@ -1,33 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/satellite")]
-public class SpaceImageController : ControllerBase
+[Route("/api/space")]
+public class SpaceController : ControllerBase
 {
     private readonly SpaceDbContext _context;
 
-    public SpaceImageController(SpaceDbContext context)
+    public SpaceController(SpaceDbContext context)
     {
         _context = context;
-
-        // Seed data – bara första gången
-        if (!_context.SatelliteImages.Any())
-        {
-            _context.SatelliteImages.AddRange(
-                new SatelliteImage { City = "Borås", ImageUrl = "/images/boras.jpg" },
-                new SatelliteImage { City = "Stockholm", ImageUrl = "/images/stockholm.jpg" },
-                new SatelliteImage { City = "Göteborg", ImageUrl = "/images/goteborg.jpg" }
-            );
-            _context.SaveChanges();
-        }
     }
 
     // GET /api/satellite/boras
-    [HttpGet("{city}")]
+    [HttpGet("/satellite/{city}")]
     public IActionResult GetSatelliteImage(string city)
     {
         var image = _context.SatelliteImages
-            .FirstOrDefault(x => x.City.ToLower() == city.ToLower());
+            .FirstOrDefault(x => x.City != null && x.City.ToLower() == city.ToLower());
 
         if (image == null) return NotFound(new { message = "City not found" });
 
@@ -35,7 +24,7 @@ public class SpaceImageController : ControllerBase
     }
 
     // GET /api/satellite/all
-    [HttpGet("all")]
+    [HttpGet("satellite/all")]
     public IActionResult GetAllSatelliteImages()
     {
         return Ok(_context.SatelliteImages.ToList());
@@ -45,7 +34,7 @@ public class SpaceImageController : ControllerBase
     [HttpGet("weather")]
     public IActionResult GetWeatherFromSpace()
     {
-        return Ok("Fint väder");
+        return Ok("Fint väder i rymden");
     }
 
     [HttpGet("location")]
