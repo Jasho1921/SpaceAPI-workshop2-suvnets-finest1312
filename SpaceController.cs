@@ -55,20 +55,20 @@ public class SpaceController : ControllerBase
         return Ok("Fint väder i rymden");
     }
 
-    [HttpGet("funfact/{planet}")]
-    public IActionResult GetLocationFunFact(string planet)
-    {
-        var factsForPlanet = _context.FunFacts
-            .Where(f => f.Planet.ToLower() == planet.ToLower())
-            .ToList();
+    // [HttpGet("funfact/{planet}")]
+    // public IActionResult GetLocationFunFact(string planet)
+    // {
+    //     var factsForPlanet = _context.FunFacts
+    //         .Where(f => f.Planet.ToLower() == planet.ToLower())
+    //         .ToList();
 
-        if (!factsForPlanet.Any())
-            return NotFound("Ingen fun fact hittades för planeten");
+    //     if (!factsForPlanet.Any())
+    //         return NotFound("Ingen fun fact hittades för planeten");
 
-        var randomFact = factsForPlanet[
-            new Random().Next(factsForPlanet.Count)
-        ];
+    //     var randomFact = factsForPlanet[
+    //         new Random().Next(factsForPlanet.Count)
+    //     ];
 
-        return Ok(randomFact);
-    }
+    //     return Ok(randomFact);
+    // }
 }
