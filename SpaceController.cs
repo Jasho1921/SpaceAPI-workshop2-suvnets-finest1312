@@ -4,10 +4,27 @@ using Microsoft.AspNetCore.Mvc;
 [Route("/api/space")]
 public class SpaceController : ControllerBase
 {
-    [HttpGet("hello")]
-    public IActionResult GetHello()
+    [ApiController]
+    [Route("/api/satellite")]
+    public class SpaceImageController : ControllerBase
     {
-        return Ok("Hello from SpaceController!");
+        private readonly SpaceDbContext _context;
+
+        public SpaceImageController(SpaceDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet("satellite/{city}")]
+        public IActionResult GetSatelliteImage(string city)
+        {
+            var image = _context.SatelliteImages
+                .FirstOrDefault(x => x.City.ToLower() == city.ToLower());
+
+            if (image == null) return NotFound();
+
+            return Ok(image);
+        }
     }
 
     [HttpGet("weather")]
