@@ -8,20 +8,22 @@ public class SpaceDbContext : DbContext
     public DbSet<Space> Spaces { get; set; }
     public DbSet<SatelliteImage> SatelliteImages { get; set; }
     public DbSet<CelestialBody> CelestialBodies { get; set; }
-    // public DbSet<LocationFunFact> FunFacts { get; set; }
+    public DbSet<WeatherForecast> WeatherForecasts { get; set; }
+    public DbSet<LocationFunFact> FunFacts { get; set; }
 
 
 }
 
-// public class LocationFunFact
-// {
-//     public string Planet { get; set; } = "";
-//     public string Fact { get; set; } = "";
-// }
+public class LocationFunFact
+{
+    public int ID { get; set; }
+    public string Planet { get; set; } = string.Empty;
+    public string Fact { get; set; } = string.Empty;
+}
 
 public class Space
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string? Title { get; set; }
     public string? Category { get; set; }
     public string? Fact { get; set; }
@@ -29,14 +31,14 @@ public class Space
 
 public class SatelliteImage
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string? City { get; set; }
-    public string? ImageUrl { get; set; }
+    public string ImageUrl { get; set; } = string.Empty;
 }
 
 public class CelestialBody
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string ApiId { get; set; } = string.Empty; // lowercase engelska för enkel sökning t.ex. "earth", "pluto"
     public string EnglishName { get; set; } = string.Empty;
     public bool IsPlanet { get; set; }     // true för de 8, false för moon/pluto
@@ -51,5 +53,12 @@ public class CelestialBody
     public int? MoonsCount { get; set; }
     public string? AroundPlanet { get; set; } // bara för månar
     public string Description { get; set; } = string.Empty;
+}
+
+public class WeatherForecast
+{
+    public int ID { get; set; }
+    public string City { get; set; } = string.Empty;
+    public string Message { get; set; } = string.Empty;
 }
 
