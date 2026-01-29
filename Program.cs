@@ -31,20 +31,3 @@ app.UseCors();
 app.MapControllers();
 
 app.Run();
-
-public class SpaceDbContext : DbContext
-{
-    public SpaceDbContext(DbContextOptions options) : base(options) { }
-
-    public DbSet<Space> Spaces { get; set; }
-}
-
-
-public class Space
-{
-    public int ID { get; set; }
-    public string Title { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
-    public string Fact { get; set; } = string.Empty;
-
-}
