@@ -16,15 +16,15 @@
 /satellite/{city} OBS ENDAST METADATA, GÅR EJ RETURNERA JPG I JSON FORMAT
 {
 
-  "city": "Stockholm",
+"city": "Stockholm",
 
-  "imageType": "satellite",
+"imageType": "satellite",
 
-  "format": "jpg",
+"format": "jpg",
 
-  "resolution": "1920x1080",
+"resolution": "1920x1080",
 
-  "takenFrom": "Low Earth Orbit"
+"takenFrom": "Low Earth Orbit"
 
 }
 
@@ -36,24 +36,24 @@
 
    {
 
-      "city": "Borås",
+  "city": "Borås",
 
-      "imageUrl": "/api/space/satellite/Boras.jpg
+  "imageUrl": "/api/space/satellite/Boras.jpg
 
    },
 
    {
 
-     "city": "Göteborg",
+  "city": "Göteborg",
 
-     "imageUrl": "/api/space/satellite/Goteborg.jpg"
+  "imageUrl": "/api/space/satellite/Goteborg.jpg"
 
    },
    {
 
-     "city": "Stockholm",
+  "city": "Stockholm",
 
-     "imageUrl": "api/space/satellite/Stockholm.jpg"
+  "imageUrl": "api/space/satellite/Stockholm.jpg"
 
    }
 
