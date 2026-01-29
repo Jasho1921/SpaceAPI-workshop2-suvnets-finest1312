@@ -14,7 +14,7 @@ public class SpaceController : ControllerBase
     }
 
     // GET /api/satellite/boras
-    [HttpGet("/satellite/{city}")]
+    [HttpGet("satellite/{city}")]
     public IActionResult GetSatelliteImage(string city)
     {
         var image = _context.SatelliteImages
